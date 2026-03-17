@@ -163,7 +163,6 @@ function initLiveBg() {
 
   window.addEventListener("themechange", function () {
     COL = getCol();
-    initParticles();
   });
 
   // Full code lines as segments: { type, text }
@@ -508,25 +507,27 @@ if ("IntersectionObserver" in window) {
 
   function setTheme(theme) {
     theme = theme === "dark" ? "dark" : "light";
-    html.setAttribute("data-theme", theme);
     try {
       localStorage.setItem(storageKey, theme);
     } catch (e) {}
-    document.querySelectorAll(".theme-btn").forEach(function (btn) {
-      var active = btn.getAttribute("data-theme") === theme;
-      btn.classList.toggle("active", active);
-      btn.setAttribute("aria-pressed", active);
-    });
-    window.dispatchEvent(new CustomEvent("themechange", { detail: theme }));
+    // Reload so Safari and mobile repaint once instead of animating all glass/blur
+    window.location.reload();
   }
 
+  // Apply stored theme on initial load without transitions
+  var initial = getStored();
+  html.setAttribute("data-theme", initial);
   document.querySelectorAll(".theme-btn").forEach(function (btn) {
+    var active = btn.getAttribute("data-theme") === initial;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", active);
     btn.addEventListener("click", function () {
-      setTheme(btn.getAttribute("data-theme"));
+      var nextTheme = btn.getAttribute("data-theme");
+      if (nextTheme !== initial) {
+        setTheme(nextTheme);
+      }
     });
   });
-
-  setTheme(getStored());
 })();
 
 // Dynamic year in footer

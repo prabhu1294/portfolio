@@ -119,6 +119,9 @@
 
 .btn .btn-icon {
   color: var(--accent);
+  /* White outline around the icon glyph */
+  -webkit-text-stroke: 0.7px rgba(255, 255, 255, 0.9);
+  text-stroke: 0.7px rgba(255, 255, 255, 0.9);
 }
 
 .section-icon {
@@ -287,6 +290,12 @@ body {
 main {
   position: relative;
   z-index: 1;
+}
+
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
 }
 
 .container {
@@ -603,40 +612,37 @@ main {
   color: #fff;
 }
 
-.btn.ghost {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-  border-color: var(--border-glass);
-}
-
-.btn.ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-subtle);
-}
-
 .btn.subtle {
   padding-inline: 1.1rem;
-  background: transparent;
-  border-color: var(--border-subtle);
-  color: var(--text-soft);
+}
+
+.btn.ghost,
+.btn.subtle {
+  background: linear-gradient(135deg, var(--accent), #0e7490);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);
+}
+
+.btn.ghost:hover,
+.btn.subtle:hover {
+  background: linear-gradient(135deg, #0e7490, var(--accent));
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(8, 145, 178, 0.4);
 }
 
 .btn.subtle:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--border-glass);
-  color: var(--text);
   transform: translateY(-2px);
 }
 
 .btn.primary:hover .btn-icon,
-.btn.ghost:hover .btn-icon {
-  color: inherit;
-}
-
+.btn.ghost:hover .btn-icon,
 .btn.subtle:hover .btn-icon {
-  color: var(--accent);
+  color: inherit;
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
 }
 
 .hero-meta {
@@ -725,6 +731,12 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+}
+
+[data-theme="light"] .profile-status-pill {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(15, 23, 42, 0.16);
+  color: var(--text);
 }
 
 .status-dot {
@@ -1184,6 +1196,21 @@ main {
   font-weight: 400;
 }
 
+[data-theme="light"] .coming-soon-label {
+  color: var(--text);
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.2), rgba(226, 232, 240, 0.9));
+  border-color: rgba(148, 163, 184, 0.4);
+  box-shadow: 0 0 18px rgba(148, 163, 184, 0.35);
+}
+
+[data-theme="light"] .coming-soon-title {
+  color: var(--text);
+}
+
+[data-theme="light"] .coming-soon-tagline {
+  color: var(--text-subtle);
+}
+
 @keyframes coming-soon-pulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 24px rgba(34, 211, 238, 0.15); }
   50% { opacity: 0.92; box-shadow: 0 0 32px rgba(34, 211, 238, 0.25); }
@@ -1258,6 +1285,21 @@ main {
   color: var(--text-soft);
   line-height: 1.35;
   display: block;
+}
+
+[data-theme="light"] .agent-speech {
+  background: rgba(248, 250, 252, 0.98);
+  border-color: rgba(148, 163, 184, 0.4);
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.3);
+}
+
+[data-theme="light"] .agent-speech::after {
+  border-top-color: rgba(248, 250, 252, 0.98);
+  filter: drop-shadow(0 1px 3px rgba(148, 163, 184, 0.4));
+}
+
+[data-theme="light"] .agent-speech-text {
+  color: var(--text);
 }
 
 @keyframes agent-pop {
@@ -1767,6 +1809,18 @@ main > section.scroll-section.section-visible {
 
   .timeline-content:hover {
     transform: translateX(2px);
+  }
+
+  /* Stack Coming Soon agent below text on mobile to avoid overlap */
+  .video-placeholder.coming-soon {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .coming-soon-agent {
+    position: static;
+    margin-top: 0.75rem;
+    align-self: flex-end;
   }
 }
 
