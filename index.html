@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,9 @@
       name="description"
       content="Portfolio of Manekanda Prabhu – AI Engineer, Banking Automation Architect & Technology Manager with 9+ years of experience in trade finance, payments and enterprise workflow automation."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
@@ -17,7 +20,7 @@
       <div class="code-bg-layer code-bg-layer-2"></div>
       <div class="code-bg-pulse"></div>
     </div>
-    <div class="page-gradient"></div>
+    <div class="page-gradient parallax-layer" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="container header-inner">
@@ -40,12 +43,23 @@
           <a href="#experience"><i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i> Experience</a>
           <a href="#contact"><i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i> Contact</a>
         </nav>
+        <div class="theme-toggle-wrap">
+          <button type="button" class="theme-btn active" data-theme="light" aria-pressed="true" aria-label="Light theme">
+            <i class="fa-solid fa-sun" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="theme-btn" data-theme="dark" aria-pressed="false" aria-label="Dark theme">
+            <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
     </header>
 
     <main>
       <!-- Hero -->
       <section id="hero" class="section hero">
+        <div class="hero-bg-canvas-wrap" aria-hidden="true">
+          <canvas id="hero-particles" class="hero-particles-canvas"></canvas>
+        </div>
         <div class="container hero-grid">
           <div class="hero-content reveal">
             <p class="eyebrow"><i class="fa-solid fa-sparkles icon-inline" aria-hidden="true"></i> AI Engineering · AI Agents · Vibe Coding</p>
@@ -118,7 +132,7 @@
       </section>
 
       <!-- About -->
-      <section id="about" class="section">
+      <section id="about" class="section scroll-section">
         <div class="container section-header reveal">
           <h2><i class="fa-solid fa-circle-info section-icon" aria-hidden="true"></i> About</h2>
           <p>
@@ -126,7 +140,7 @@
             prototyping for banking.
           </p>
         </div>
-        <div class="container about-grid">
+        <div class="container about-grid parallax-in">
           <div class="about-card reveal">
             <h3><i class="fa-solid fa-gears card-icon" aria-hidden="true"></i> AI-Driven Automation</h3>
             <p>
@@ -168,13 +182,13 @@
       </section>
 
       <!-- Core AI Projects -->
-      <section id="projects" class="section">
+      <section id="projects" class="section scroll-section">
         <div class="container section-header reveal">
           <h2><i class="fa-solid fa-robot section-icon" aria-hidden="true"></i> Core AI Projects</h2>
           <p>Production-grade AI solutions for trade finance and operations.</p>
         </div>
 
-        <div class="container project-grid">
+        <div class="container project-grid stagger-in">
           <!-- Project 1 -->
           <article class="project-card reveal">
             <div class="project-tag"><i class="fa-solid fa-bolt project-tag-icon" aria-hidden="true"></i> Taswiya</div>
@@ -263,7 +277,7 @@
       </section>
 
       <!-- Solution Videos -->
-      <section id="videos" class="section">
+      <section id="videos" class="section scroll-section">
         <div class="container section-header reveal">
           <h2><i class="fa-solid fa-video section-icon" aria-hidden="true"></i> Solution Videos</h2>
           <p>
@@ -275,47 +289,68 @@
         <div class="container video-grid">
           <div class="video-card reveal">
             <div class="video-player-wrap">
-              <p class="video-player-title">Taswiya Overview</p>
-              <video
-                class="video-player"
-                src="TASWIYA%20v3.0.mp4"
-                controls
-                playsinline
-                preload="metadata"
-              >
-                Your browser does not support the video tag.
-                <a href="TASWIYA%20v3.0.mp4">Download TASWIYA v3.0</a>
-              </video>
+              <div class="video-showcase">
+                <video
+                  class="video-player"
+                  src="TASWIYA%20v3.0.mp4"
+                  controls
+                  playsinline
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                  <a href="TASWIYA%20v3.0.mp4">Download TASWIYA v3.0</a>
+                </video>
+                <div class="video-play-overlay" aria-hidden="true">
+                  <span class="video-play-icon"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
+                </div>
+                <div class="video-title-overlay">
+                  <p class="video-player-title">Taswiya Overview</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="video-card reveal delay-1">
             <div class="video-player-wrap">
-              <p class="video-player-title">EDMS Vault</p>
-              <video
-                class="video-player"
-                src="EDMSVAULTv5.mp4"
-                controls
-                playsinline
-                preload="metadata"
-              >
-                Your browser does not support the video tag.
-                <a href="EDMSVAULTv5.mp4">Download EDMS Vault v5</a>
-              </video>
+              <div class="video-showcase">
+                <video
+                  class="video-player"
+                  src="EDMSVAULTv5.mp4"
+                  controls
+                  playsinline
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                  <a href="EDMSVAULTv5.mp4">Download EDMS Vault v5</a>
+                </video>
+                <div class="video-play-overlay" aria-hidden="true">
+                  <span class="video-play-icon"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
+                </div>
+                <div class="video-title-overlay">
+                  <p class="video-player-title">EDMS Vault</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="video-card reveal delay-2">
             <div class="video-player-wrap">
-              <p class="video-player-title">Trade automation platform demos</p>
-              <video
-                class="video-player"
-                src="AI-TRADE%20DOCUMENT%20PROCESSING.mp4"
-                controls
-                playsinline
-                preload="metadata"
-              >
-                Your browser does not support the video tag.
-                <a href="AI-TRADE%20DOCUMENT%20PROCESSING.mp4">Download AI-Trade Document Processing</a>
-              </video>
+              <div class="video-showcase">
+                <video
+                  class="video-player"
+                  src="AI-TRADE%20DOCUMENT%20PROCESSING.mp4"
+                  controls
+                  playsinline
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                  <a href="AI-TRADE%20DOCUMENT%20PROCESSING.mp4">Download AI-Trade Document Processing</a>
+                </video>
+                <div class="video-play-overlay" aria-hidden="true">
+                  <span class="video-play-icon"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
+                </div>
+                <div class="video-title-overlay">
+                  <p class="video-player-title">Trade automation platform demos</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="video-card reveal delay-3 video-card-coming-soon">
@@ -340,7 +375,7 @@
       </section>
 
       <!-- Technology Stack -->
-      <section id="stack" class="section">
+      <section id="stack" class="section scroll-section">
         <div class="container section-header reveal">
           <h2><i class="fa-solid fa-layer-group section-icon" aria-hidden="true"></i> Technology Stack</h2>
           <p>Technologies used to design, build and operate banking automation platforms.</p>
@@ -383,7 +418,7 @@
       </section>
 
       <!-- Experience Timeline -->
-      <section id="experience" class="section">
+      <section id="experience" class="section scroll-section">
         <div class="container section-header reveal">
           <h2><i class="fa-solid fa-briefcase section-icon" aria-hidden="true"></i> Experience</h2>
           <p>Leadership across AI engineering, banking automation and enterprise platforms.</p>
@@ -456,7 +491,7 @@
       </section>
 
       <!-- Contact -->
-      <section id="contact" class="section">
+      <section id="contact" class="section scroll-section">
         <div class="container section-header reveal">
           <h2><i class="fa-solid fa-envelope section-icon" aria-hidden="true"></i> Contact</h2>
           <p>Open to discussing AI-led automation, banking platforms and leadership roles.</p>
@@ -491,4 +526,3 @@
     <script src="script.js"></script>
   </body>
   </html>
-
