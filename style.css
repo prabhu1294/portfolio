@@ -1820,7 +1820,9 @@ main > section.scroll-section.section-visible {
   .coming-soon-agent {
     position: static;
     margin-top: 0.75rem;
-    align-self: flex-end;
+    align-self: stretch;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
